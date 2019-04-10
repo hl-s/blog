@@ -1,0 +1,111 @@
+/* 主要架构*/
+body{
+	/* background:url() no-repeat center;
+	-webkit-background-size: cover;
+	background-size: cover; */
+}
+.jc-warp{
+	width: 100%;
+	perspective: 800px;
+	perspective-origin: 0 50%;
+}
+.jc-content{
+	width: 100%;
+	height: 1000px;
+	background-color: #EEEEEE;
+	padding-left: 6px;
+}
+.jc-nav{
+	width: 220px;
+	height: 100%;
+	position: fixed;
+	left: -214px;
+	top: 0;
+	z-index: 1;
+	background-color: #333;
+	color: #eee;
+}
+.jc-nav:hover{
+	left:0;
+	transition: left 0.8s;
+}
+.jc-nav:hover>.jc-nav-ctrl{
+	color: transparent;
+}
+.jc-nav:hover+.jc-warp .jc-content{
+	transform-origin: left;
+	animation: containerMove 0.8s forwards;
+} 
+ @keyframes containerMove{
+	from{
+		transform: rotateY(0deg);
+		margin-left: 0;
+	}
+	to{
+		transform: rotateY(20deg);
+		margin-left: 220px;
+	}
+}
+
+/* 导航 */
+.jc-nav{
+	padding-top: 50px;
+}
+.jc-nav-ctrl{
+	position: absolute;
+	right: -40px;
+	top: 50%;
+	color: #333;
+	font-size: 30px;
+	margin-top: -30px;
+	animation: jcNavCtrl 2s ease-in-out infinite;
+}
+@keyframes jcNavCtrl{
+	from{
+		right: -40px;	
+	}
+	to{
+		right: -50px;
+	}
+}
+.jc-nav ul>li{
+	text-align: center;
+	font-size: 20px;
+	line-height: 50px;
+}
+/* 非pc端 */
+@media screen and (max-width:992px){
+	.jc-nav{
+		width: 160px;
+		left: -154px;
+	}
+	 @keyframes containerMove{
+		from{
+			transform: rotateY(0deg);
+			margin-left: 0;
+		}
+		to{
+			transform: rotateY(20deg);
+			margin-left: 160px;
+		}
+	}
+	.jc-nav-ctrl{
+		font-size: 26px;
+	}
+	@keyframes jcNavCtrl{
+		from{
+			right: -30px;	
+		}
+		to{
+			right: -40px;
+		}
+	}
+	/* 导航 */
+	.jc-nav{
+		padding-top: 40px;
+	}
+	.jc-nav ul>li{
+		font-size: 16px;
+		line-height: 40px;
+	}
+}
